@@ -17,12 +17,10 @@ fetch("https://api.coincap.io/v2/assets")
 
         cryptoArray.forEach(coin => {
             coin.imgSource = `https://cryptoicons.org/api/icon/${coin.symbol.toLowerCase()}/200`;
-
         });
 
-
         // Create a menu item for each coin and render them
-        function createCoinMenuItem(symbol, name, price) {
+        function createCoinMenuItem(symbol, name, price, imgSource) {
             // Create a list item element
             const listItem = document.createElement('li');
             listItem.className = 'coin-item';
@@ -48,7 +46,7 @@ fetch("https://api.coincap.io/v2/assets")
 
             // Add a click event listener to render coin details
             listItem.addEventListener('click', () => {
-                renderCoinDetails(name, price);
+                renderCoinDetails(name, price, imgSource);
             });
 
             return listItem;
@@ -64,12 +62,18 @@ fetch("https://api.coincap.io/v2/assets")
             const nameElement = document.createElement('h2');
             nameElement.textContent = name;
 
-            // Create the image element with a placeholder image
+            // Create the image element with the provided imgSource
             const imageElement = document.createElement('img');
-            imageElement.src = imgSource; // Replace 'placeholder.png' with the path to your placeholder image
+            imageElement.src = imgSource;
             imageElement.alt = name;
             imageElement.width = 200;
             imageElement.height = 200;
+
+            // Add an error event listener to handle image loading failure
+            imageElement.addEventListener('error', () => {
+                // Set a placeholder image source
+                imageElement.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP7jZUOGvusMIOFUpAGYcEe28KZqFzWIKkB-TIkdSs&s'; // Replace with the path to your placeholder image
+            });
 
             // Create a paragraph element for the price
             const priceElement = document.createElement('p');
@@ -86,6 +90,7 @@ fetch("https://api.coincap.io/v2/assets")
             contentContainer.appendChild(coinDetailsContainer);
         }
 
+
         // Fetch complete, proceed with rendering
         const firstCoin = cryptoArray[0];
         renderCoinDetails(firstCoin.name, firstCoin.priceUsd, firstCoin.imgSource);
@@ -100,14 +105,14 @@ fetch("https://api.coincap.io/v2/assets")
 
             // Create and append a menu item for each visible coin
             for (let i = 0; i < visibleCoins.length; i++) {
-                const { symbol, name, priceUsd } = visibleCoins[i];
-                const listItem = createCoinMenuItem(symbol, name, priceUsd);
+                const { symbol, name, priceUsd, imgSource } = visibleCoins[i];
+                const listItem = createCoinMenuItem(symbol, name, priceUsd, imgSource);
                 coinList.appendChild(listItem);
             }
+
             // Enable/disable the previous and next buttons
             prevBtn.disabled = currentIndex === 0;
             nextBtn.disabled = currentIndex + 5 >= cryptoArray.length;
-
         }
 
         // Go to the previous set of coins
@@ -136,8 +141,6 @@ fetch("https://api.coincap.io/v2/assets")
     .catch(error => {
         console.log("Error fetching data:", error);
     });
-
-
 
 
 /*
