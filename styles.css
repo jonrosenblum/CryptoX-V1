@@ -15,9 +15,15 @@ body, h1, ul {
     padding: 20px;
     color: black;
   }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   
   h1 {
-    font-size: 24px;
+    margin: 0;
   }
   
   /* Coin menu */
@@ -40,6 +46,10 @@ body, h1, ul {
   .coin-item:hover {
     color: grey;
   }
+
+  .form-container {
+    margin-left: 10px;
+  }
   
   /* Coin details container */
   .coin-details {
@@ -54,6 +64,8 @@ body, h1, ul {
     margin: 0 auto;
     max-width: 800px;
   }
+
+  
   
   /* Footer */
   footer {
@@ -96,4 +108,12 @@ body, h1, ul {
     font-size: 18px;
     color: black;
   }
-  
+
+/* Adjust the styles of the form elements as needed */
+#search-input {
+  width: 200px;
+}
+
+#search-form button {
+  margin-left: 10px;
+}

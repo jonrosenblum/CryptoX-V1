@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Crypto Menu</title>
+  <title>Real-Time Crypto Prices</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>Real-Time Crypto Prices</h1>
+      <div class="header-container">
+        <h1>Crypto Coin Tracker</h1>
+        <div class="form-container">
+          <form id="search-form">
+            <input type="text" id="search-input" placeholder="Enter coin symbol here">
+            <button type="submit">Search</button>
+          </form>
+          <button id="watchlist-btn">Watchlist</button>
+          <button id="portfolio-btn">Portfolio</button>
+          <button id="log-in-btn">Log In</button>
+          <button id="sign-up-btn">Sign Up</button>
+        </div>
+      </div>
     </header>
     <nav>
       <ul id="coin-list" class="coin-list"></ul>
