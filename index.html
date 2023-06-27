@@ -1,46 +1,106 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Crypto Coin Tracker</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="container">
-    <header>
-      <div class="header-content">
-        <h1>Real-Time Crypto Prices</h1>
-        <div class="form-container">
-          <form id="watchlist-form">
-            <input type="text" id="watchlist-input" placeholder="Enter coin symbol here">
-            <button type="submit" id="watchlist-button">Add to Watchlist</button>
-          </form>
+  <head>
+    <title>Crypto Coin Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header-content">
+          <h1>Real-Time Crypto Prices</h1>
+          <div class="form-container">
+            <form id="watchlist-form">
+              <input
+                type="text"
+                id="watchlist-input"
+                placeholder="Enter coin symbol here"
+              />
+              <button type="submit" id="watchlist-button">
+                Add to Watchlist
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
-      <nav class="nav-menu">
-        <ul id="coin-list" class="coin-list"></ul>
-        <div class="nav-buttons">
-          <button class="prev-btn">Previous</button>
-          <button class="next-btn">Next</button>
+        <div class="menu-bar">
+          <ul class="menu">
+            <li class="dropdown">
+              <a href="#">Menu 1</a>
+              <div class="dropdown-content">
+                <a href="#">Submenu 1</a>
+                <a href="#">Submenu 2</a>
+                <a href="#">Submenu 3</a>
+              </div>
+            </li>
+            <li class="dropdown">
+              <a href="#">Menu 2</a>
+              <div class="dropdown-content">
+                <a href="#">Submenu 1</a>
+                <a href="#">Submenu 2</a>
+                <a href="#">Submenu 3</a>
+              </div>
+            </li>
+            <li class="dropdown">
+              <a href="#">Menu 3</a>
+              <div class="dropdown-content">
+                <a href="#">Submenu 1</a>
+                <a href="#">Submenu 2</a>
+                <a href="#">Submenu 3</a>
+              </div>
+            </li>
+            <li class="dropdown">
+              <a href="#">Menu 4</a>
+              <div class="dropdown-content">
+                <a href="#">Submenu 1</a>
+                <a href="#">Submenu 2</a>
+                <a href="#">Submenu 3</a>
+              </div>
+            </li>
+            <li class="dropdown">
+              <a href="#">Menu 5</a>
+              <div class="dropdown-content">
+                <a href="#">Submenu 1</a>
+                <a href="#">Submenu 2</a>
+                <a href="#">Submenu 3</a>
+              </div>
+            </li>
+            <li class="dropdown">
+              <a href="#">Menu 6</a>
+              <div class="dropdown-content">
+                <a href="#">Submenu 1</a>
+                <a href="#">Submenu 2</a>
+                <a href="#">Submenu 3</a>
+              </div>
+            </li>
+          </ul>
         </div>
-      </nav>
-    </header>
-    <main>
-      <div class="main-container">
-        <div class="content-container"></div>
-        <div class="change-container">
-          <h2>24hr Change</h2>
-        </div>
-        <div class="watchlist-container">
-          <h2>Watchlist Coins</h2>
-          <ul id="watchlist-items" class="watchlist-items"></ul>
-        </div>
-      </div>
-    </main>
-    <footer>
-      <p>© 2023 Jon Rosenblum. All rights reserved.</p>
-    </footer>
-  </div>
+        <nav class="nav-menu">
+          <ul id="coin-list" class="coin-list"></ul>
+          <div class="nav-buttons">
+            <button class="prev-btn">Previous</button>
+            <button class="next-btn">Next</button>
+          </div>
+        </nav>
+      </header>
+      <main>
+        <div class="main-container">
+          <div class="content-container"></div>
+          <div class="change-container">
+            <h2>24hr Change</h2>
+            <div id="coin-change-container" class="coin-change-container"></div>
+          </div>
 
-  <script src="./src/index.js"></script>
-</body>
+          <div class="watchlist-container">
+            <h2>Watchlist Coins</h2>
+            <ul id="watchlist-items" class="watchlist-items"></ul>
+          </div>
+        </div>
+      </main>
+      <footer>
+        <p>© 2023 Jon Rosenblum. All rights reserved.</p>
+      </footer>
+    </div>
+
+    <script src="./src/index.js"></script>
+  </body>
 </html>
