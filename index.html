@@ -7,33 +7,35 @@
 <body>
   <div class="container">
     <header>
-      <div class="header-container">
+      <div class="header-content">
         <h1>Crypto Coin Tracker</h1>
         <div class="form-container">
           <form id="search-form">
             <input type="text" id="search-input" placeholder="Enter coin symbol here">
-            <button type="submit">Search</button>
+            <button type="submit">Add to Watchlist</button>
           </form>
-          <button id="watchlist-btn">Watchlist</button>
-          <button id="portfolio-btn">Portfolio</button>
-          <button id="log-in-btn">Log In</button>
-          <button id="sign-up-btn">Sign Up</button>
         </div>
       </div>
+      <nav class="nav-menu">
+        <ul id="coin-list" class="coin-list"></ul>
+        <div class="nav-buttons">
+          <button class="prev-btn">Previous</button>
+          <button class="next-btn">Next</button>
+        </div>
+      </nav>
     </header>
-    <nav>
-      <ul id="coin-list" class="coin-list"></ul>
-      <button class="prev-btn">Previous</button>
-      <button class="next-btn">Next</button>
-    </nav>
     <main>
       <div class="content-container"></div>
+      <div class="watchlist-container">
+        <h2>Watchlist Coins</h2>
+        <ul id="watchlist-coins" class="watchlist-coins"></ul>
+      </div>
     </main>
     <footer>
       <p>© 2023 Jon Rosenblum. All rights reserved.</p>
     </footer>
   </div>
 
-  <script src="src/index.js"></script>
+  <script src="./src/index.js"></script>
 </body>
 </html>

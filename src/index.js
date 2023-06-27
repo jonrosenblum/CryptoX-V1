@@ -4,6 +4,10 @@ const prevBtn = document.querySelector('.prev-btn');
 const nextBtn = document.querySelector('.next-btn');
 const menuContainer = document.querySelector('.menu-container');
 const contentContainer = document.querySelector('.content-container');
+const watchlistForm = document.getElementById('watchlist-form');
+const watchlistInput = document.getElementById('watchlist-input');
+const watchlistButton = document.getElementById('watchlist-button');
+const watchlistItems = document.getElementById('watchlist-items');
 
 // Initialize currentIndex
 let currentIndex = 0;
@@ -26,7 +30,6 @@ fetch("https://api.coincap.io/v2/assets")
             listItem.className = 'coin-item';
 
             // Create a paragraph element for the name and symbol
-
             const nameSymbolElement = document.createElement('p');
             nameSymbolElement.className = 'coin-name-symbol';
             nameSymbolElement.textContent = `${name} (${symbol})`;
@@ -42,21 +45,26 @@ fetch("https://api.coincap.io/v2/assets")
 
             // Add a click event listener to render coin details
             listItem.addEventListener('click', () => {
-                renderCoinDetails(name, price, imgSource);
+                renderCoinDetails(name, symbol, price, imgSource);
             });
 
             return listItem;
         }
 
         // Render the coin details
-        function renderCoinDetails(name, price, imgSource) {
+        function renderCoinDetails(name, symbol, price, imgSource) {
             // Create a container for the coin details
             const coinDetailsContainer = document.createElement('div');
             coinDetailsContainer.className = 'coin-details';
 
             // Create an h2 element for the name
             const nameElement = document.createElement('h2');
-            nameElement.textContent = name;
+            nameElement.textContent = `${name} (${symbol})`;
+
+            // Create a paragraph element for the price
+            const priceElement = document.createElement('p');
+            priceElement.className = 'coin-price';
+            priceElement.textContent = `Real-Time Price: $${price}`;
 
             // Create the image element with the provided imgSource
             const imageElement = document.createElement('img');
@@ -68,13 +76,9 @@ fetch("https://api.coincap.io/v2/assets")
             // Add an error event listener to handle image loading failure
             imageElement.addEventListener('error', () => {
                 // Set a placeholder image source
-                imageElement.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP7jZUOGvusMIOFUpAGYcEe28KZqFzWIKkB-TIkdSs&s'; // Replace with the path to your placeholder image
+                imageElement.src =
+                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP7jZUOGvusMIOFUpAGYcEe28KZqFzWIKkB-TIkdSs&s'; // Replace with the path to your placeholder image
             });
-
-            // Create a paragraph element for the price
-            const priceElement = document.createElement('p');
-            priceElement.className = 'coin-price';
-            priceElement.textContent = `$${price}`;
 
             // Append the elements to the coin details container
             coinDetailsContainer.appendChild(imageElement);
@@ -86,10 +90,14 @@ fetch("https://api.coincap.io/v2/assets")
             contentContainer.appendChild(coinDetailsContainer);
         }
 
-
         // Fetch complete, proceed with rendering
         const firstCoin = cryptoArray[0];
-        renderCoinDetails(firstCoin.name, firstCoin.priceUsd, firstCoin.imgSource);
+        renderCoinDetails(
+            firstCoin.name,
+            firstCoin.symbol.toUpperCase(),
+            firstCoin.priceUsd,
+            firstCoin.imgSource
+        );
 
         // Show the current set of coins
         function showCurrentCoins() {
@@ -133,11 +141,24 @@ fetch("https://api.coincap.io/v2/assets")
 
         // Show the initial set of coins
         showCurrentCoins();
+
+        // Watchlist functionality
+        watchlistForm.addEventListener('submit', event => {
+            event.preventDefault();
+            const symbol = watchlistInput.value.trim().toUpperCase();
+            const coin = cryptoArray.find(item => item.symbol.toUpperCase() === symbol);
+            if (coin) {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${coin.symbol} - $${coin.priceUsd}`;
+                watchlistItems.appendChild(listItem);
+                watchlistInput.value = '';
+            }
+        });
+
     })
     .catch(error => {
-        console.log("Error fetching data:", error);
+        console.log('Error fetching data:', error);
     });
-
 
 /*
 DOM Elements:
