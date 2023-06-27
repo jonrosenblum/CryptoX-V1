@@ -12,85 +12,116 @@ const watchlistItems = document.getElementById('watchlist-items');
 // Initialize currentIndex
 let currentIndex = 0;
 
+// Function to create a coin menu item
+function createCoinMenuItem(symbol, name, price, imgSource) {
+    const listItem = document.createElement('li');
+    listItem.className = 'coin-item';
+
+    const nameSymbolElement = document.createElement('p');
+    nameSymbolElement.className = 'coin-name-symbol';
+    nameSymbolElement.textContent = `${name} (${symbol})`;
+
+    const priceElement = document.createElement('p');
+    priceElement.className = 'coin-price';
+    priceElement.textContent = `$${price}`;
+
+    listItem.appendChild(nameSymbolElement);
+    listItem.appendChild(priceElement);
+
+    listItem.addEventListener('click', () => {
+        renderCoinDetails(name, symbol, price, imgSource);
+    });
+
+    return listItem;
+}
+
+// Function to render coin details
+function renderCoinDetails(name, symbol, price, imgSource) {
+    const coinDetailsContainer = document.createElement('div');
+    coinDetailsContainer.className = 'coin-details';
+
+    const nameElement = document.createElement('h2');
+    nameElement.textContent = `${name} (${symbol})`;
+
+    const priceElement = document.createElement('p');
+    priceElement.className = 'coin-price';
+    priceElement.textContent = `Real-Time Price: $${price}`;
+
+    const imageElement = document.createElement('img');
+    imageElement.src = imgSource;
+    imageElement.alt = name;
+    imageElement.width = 200;
+    imageElement.height = 200;
+
+    imageElement.addEventListener('error', () => {
+        imageElement.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP7jZUOGvusMIOFUpAGYcEe28KZqFzWIKkB-TIkdSs&s';
+    });
+
+    coinDetailsContainer.appendChild(imageElement);
+    coinDetailsContainer.appendChild(nameElement);
+    coinDetailsContainer.appendChild(priceElement);
+
+    contentContainer.innerHTML = '';
+    contentContainer.appendChild(coinDetailsContainer);
+}
+
+// Function to show the current set of coins
+function showCurrentCoins(cryptoArray) {
+    coinList.innerHTML = '';
+
+    const visibleCoins = cryptoArray.slice(currentIndex, currentIndex + 5);
+
+    for (let i = 0; i < visibleCoins.length; i++) {
+        const { symbol, name, priceUsd, imgSource } = visibleCoins[i];
+        const listItem = createCoinMenuItem(symbol, name, priceUsd, imgSource);
+        coinList.appendChild(listItem);
+    }
+
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex + 5 >= cryptoArray.length;
+}
+
+// Function to go to the previous set of coins
+function goToPreviousCoins(cryptoArray) {
+    if (currentIndex > 0) {
+        currentIndex -= 5;
+        showCurrentCoins(cryptoArray);
+    }
+}
+
+// Function to go to the next set of coins
+function goToNextCoins(cryptoArray) {
+    if (currentIndex + 5 < cryptoArray.length) {
+        currentIndex += 5;
+        showCurrentCoins(cryptoArray);
+    }
+}
+
+// Function to handle watchlist submission
+function handleWatchlistSubmission(cryptoArray) {
+    watchlistForm.addEventListener('submit', event => {
+        event.preventDefault();
+        const symbol = watchlistInput.value.trim().toUpperCase();
+        const coin = cryptoArray.find(item => item.symbol.toUpperCase() === symbol);
+        if (coin) {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${coin.symbol} - $${coin.priceUsd}`;
+            watchlistItems.appendChild(listItem);
+            watchlistInput.value = '';
+        }
+    });
+}
+
 // Fetch data from the API
 fetch("https://api.coincap.io/v2/assets")
     .then(response => response.json())
     .then(cryptoObject => {
-        // Extract the array of coins from the response
         const cryptoArray = cryptoObject.data;
 
         cryptoArray.forEach(coin => {
             coin.imgSource = `https://cryptoicons.org/api/icon/${coin.symbol.toLowerCase()}/200`;
         });
 
-        // Create a menu item for each coin and render them
-        function createCoinMenuItem(symbol, name, price, imgSource) {
-            // Create a list item element
-            const listItem = document.createElement('li');
-            listItem.className = 'coin-item';
-
-            // Create a paragraph element for the name and symbol
-            const nameSymbolElement = document.createElement('p');
-            nameSymbolElement.className = 'coin-name-symbol';
-            nameSymbolElement.textContent = `${name} (${symbol})`;
-
-            // Create a paragraph element for the price
-            const priceElement = document.createElement('p');
-            priceElement.className = 'coin-price';
-            priceElement.textContent = `$${price}`;
-
-            // Append the elements to the list item
-            listItem.appendChild(nameSymbolElement);
-            listItem.appendChild(priceElement);
-
-            // Add a click event listener to render coin details
-            listItem.addEventListener('click', () => {
-                renderCoinDetails(name, symbol, price, imgSource);
-            });
-
-            return listItem;
-        }
-
-        // Render the coin details
-        function renderCoinDetails(name, symbol, price, imgSource) {
-            // Create a container for the coin details
-            const coinDetailsContainer = document.createElement('div');
-            coinDetailsContainer.className = 'coin-details';
-
-            // Create an h2 element for the name
-            const nameElement = document.createElement('h2');
-            nameElement.textContent = `${name} (${symbol})`;
-
-            // Create a paragraph element for the price
-            const priceElement = document.createElement('p');
-            priceElement.className = 'coin-price';
-            priceElement.textContent = `Real-Time Price: $${price}`;
-
-            // Create the image element with the provided imgSource
-            const imageElement = document.createElement('img');
-            imageElement.src = imgSource;
-            imageElement.alt = name;
-            imageElement.width = 200;
-            imageElement.height = 200;
-
-            // Add an error event listener to handle image loading failure
-            imageElement.addEventListener('error', () => {
-                // Set a placeholder image source
-                imageElement.src =
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP7jZUOGvusMIOFUpAGYcEe28KZqFzWIKkB-TIkdSs&s'; // Replace with the path to your placeholder image
-            });
-
-            // Append the elements to the coin details container
-            coinDetailsContainer.appendChild(imageElement);
-            coinDetailsContainer.appendChild(nameElement);
-            coinDetailsContainer.appendChild(priceElement);
-
-            // Clear the content container and append the coin details
-            contentContainer.innerHTML = '';
-            contentContainer.appendChild(coinDetailsContainer);
-        }
-
-        // Fetch complete, proceed with rendering
         const firstCoin = cryptoArray[0];
         renderCoinDetails(
             firstCoin.name,
@@ -99,62 +130,12 @@ fetch("https://api.coincap.io/v2/assets")
             firstCoin.imgSource
         );
 
-        // Show the current set of coins
-        function showCurrentCoins() {
-            // Clear the coin list
-            coinList.innerHTML = '';
+        showCurrentCoins(cryptoArray);
 
-            // Get the visible coins based on the currentIndex
-            const visibleCoins = cryptoArray.slice(currentIndex, currentIndex + 5);
+        prevBtn.addEventListener('click', () => goToPreviousCoins(cryptoArray));
+        nextBtn.addEventListener('click', () => goToNextCoins(cryptoArray));
 
-            // Create and append a menu item for each visible coin
-            for (let i = 0; i < visibleCoins.length; i++) {
-                const { symbol, name, priceUsd, imgSource } = visibleCoins[i];
-                const listItem = createCoinMenuItem(symbol, name, priceUsd, imgSource);
-                coinList.appendChild(listItem);
-            }
-
-            // Enable/disable the previous and next buttons
-            prevBtn.disabled = currentIndex === 0;
-            nextBtn.disabled = currentIndex + 5 >= cryptoArray.length;
-        }
-
-        // Go to the previous set of coins
-        function goToPreviousCoins() {
-            if (currentIndex > 0) {
-                currentIndex -= 5;
-                showCurrentCoins();
-            }
-        }
-
-        // Go to the next set of coins
-        function goToNextCoins() {
-            if (currentIndex + 5 < cryptoArray.length) {
-                currentIndex += 5;
-                showCurrentCoins();
-            }
-        }
-
-        // Add event listeners to the previous and next buttons
-        prevBtn.addEventListener('click', goToPreviousCoins);
-        nextBtn.addEventListener('click', goToNextCoins);
-
-        // Show the initial set of coins
-        showCurrentCoins();
-
-        // Watchlist functionality
-        watchlistForm.addEventListener('submit', event => {
-            event.preventDefault();
-            const symbol = watchlistInput.value.trim().toUpperCase();
-            const coin = cryptoArray.find(item => item.symbol.toUpperCase() === symbol);
-            if (coin) {
-                const listItem = document.createElement('li');
-                listItem.textContent = `${coin.symbol} - $${coin.priceUsd}`;
-                watchlistItems.appendChild(listItem);
-                watchlistInput.value = '';
-            }
-        });
-
+        handleWatchlistSubmission(cryptoArray);
     })
     .catch(error => {
         console.log('Error fetching data:', error);
