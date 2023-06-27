@@ -25,14 +25,11 @@ fetch("https://api.coincap.io/v2/assets")
             const listItem = document.createElement('li');
             listItem.className = 'coin-item';
 
-            // Create a span element for the symbol
-            const symbolElement = document.createElement('span');
-            symbolElement.className = 'coin-symbol';
-            symbolElement.textContent = symbol;
+            // Create a paragraph element for the name and symbol
 
-            // Create a paragraph element for the name
-            const nameElement = document.createElement('p');
-            nameElement.textContent = name;
+            const nameSymbolElement = document.createElement('p');
+            nameSymbolElement.className = 'coin-name-symbol';
+            nameSymbolElement.textContent = `${name} (${symbol})`;
 
             // Create a paragraph element for the price
             const priceElement = document.createElement('p');
@@ -40,8 +37,7 @@ fetch("https://api.coincap.io/v2/assets")
             priceElement.textContent = `$${price}`;
 
             // Append the elements to the list item
-            listItem.appendChild(symbolElement);
-            listItem.appendChild(nameElement);
+            listItem.appendChild(nameSymbolElement);
             listItem.appendChild(priceElement);
 
             // Add a click event listener to render coin details
