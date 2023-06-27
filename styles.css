@@ -22,7 +22,6 @@ body {
   border-radius: 8px;
 }
 
-
 .container {
   display: flex;
   flex-direction: column;
@@ -94,7 +93,12 @@ nav .nav-buttons {
   gap: 10px;
 }
 
-
+/* .container-image {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 30px;
+} */
 
 .coin-details {
   display: flex;
@@ -110,13 +114,67 @@ nav .nav-buttons {
   font-weight: bold;
   text-transform: uppercase;
 }
+.watchlist-container h2 {
+  font-size: 24px;
+  color: blue;
+}
 
+.menu-bar {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 5px 0;
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-content a:hover {
+  background-color: #e0e0e0;
+}
 .coin-details .coin-price {
   font-size: 18px;
   font-weight: bold;
 }
 
-
+.coin-image {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 30px;
+}
 
 .watchlist-form {
   display: flex;
@@ -130,12 +188,12 @@ nav .nav-buttons {
 .prev-btn {
   margin-left: 10px;
 }
-.watchlist-button {
+#watchlist-button {
   padding: 5px 10px;
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 12px;
   cursor: pointer;
 }
 

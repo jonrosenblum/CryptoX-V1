@@ -18,10 +18,13 @@ fetch("https://api.coincap.io/v2/assets")
     .then(response => response.json())
     .then(cryptoObject => {
         const cryptoArray = cryptoObject.data;
+        console.log(cryptoArray)
 
         cryptoArray.forEach(coin => {
             coin.imgSource = `https://cryptoicons.org/api/icon/${coin.symbol.toLowerCase()}/200`;
+            render24HourChange(coin);
         });
+
 
         const firstCoin = cryptoArray[0];
         renderCoinDetails(
@@ -36,16 +39,12 @@ fetch("https://api.coincap.io/v2/assets")
         prevBtn.addEventListener('click', () => goToPreviousCoins(cryptoArray));
         nextBtn.addEventListener('click', () => goToNextCoins(cryptoArray));
 
-        // watchlistForm.addEventListener('submit', (event) => {
-        //     alert(`Cool data: ${event.target}`)
-        // })
         handleWatchlistSubmission(cryptoArray);
     })
     .catch(error => {
         console.log('Error fetching data:', error);
     });
 
-// handleWatchlistSubmission(cryptoArray);
 
 // Function to create a coin menu item
 function createCoinMenuItem(symbol, name, price, imgSource) {
@@ -60,13 +59,13 @@ function createCoinMenuItem(symbol, name, price, imgSource) {
     priceElement.className = 'coin-price';
     priceElement.textContent = `$${price}`;
 
-    const imageElement = document.createElement('img');
-    imageElement.className = 'coin-image';
-    imageElement.src = imgSource
+    const menuImageElement = document.createElement('img');
+    menuImageElement.className = 'coin-image';
+    menuImageElement.src = imgSource
 
     listItem.appendChild(nameSymbolElement);
+    listItem.appendChild(menuImageElement)
     listItem.appendChild(priceElement);
-    listItem.appendChild(imageElement)
 
     listItem.addEventListener('click', () => {
         renderCoinDetails(name, symbol, price, imgSource);
@@ -120,6 +119,24 @@ function showCurrentCoins(cryptoArray) {
     prevBtn.disabled = currentIndex === 0;
     nextBtn.disabled = currentIndex + 5 >= cryptoArray.length;
 }
+
+function render24HourChange(coin) {
+    const coinChangeContainer = document.createElement('div');
+    coinChangeContainer.className = 'coin-change';
+
+    const coinNameSymbolElement = document.createElement('p');
+    coinNameSymbolElement.textContent = `${coin.name} (${coin.symbol})`;
+
+    const coinChangeElement = document.createElement('p');
+    coinChangeElement.textContent = `Change: ${coin.changepercent24Hr}%`;
+
+    coinChangeContainer.appendChild(coinNameSymbolElement);
+    coinChangeContainer.appendChild(coinChangeElement);
+
+    const coinChangeContainerElement = document.getElementById('coin-change-container');
+    coinChangeContainerElement.appendChild(coinChangeContainer);
+}
+
 
 // Function to go to the previous set of coins
 function goToPreviousCoins(cryptoArray) {
