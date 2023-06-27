@@ -8,6 +8,21 @@ body {
   padding: 0;
 }
 
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.content-container,
+.change-container,
+.watchlist-container {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+
 .container {
   display: flex;
   flex-direction: column;
@@ -79,20 +94,7 @@ nav .nav-buttons {
   gap: 10px;
 }
 
-.main-container {
-  display: flex;
-}
 
-
-.content-container {
-  display: flex;
-  flex: 1;
-  margin-right: 20px;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-top: 20px;
-}
 
 .coin-details {
   display: flex;
@@ -114,16 +116,7 @@ nav .nav-buttons {
   font-weight: bold;
 }
 
-.watchlist-container {
-  display: flex;
-  flex: 0 0 300px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin-top: 20px;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
+
 
 .watchlist-form {
   display: flex;
@@ -134,7 +127,9 @@ nav .nav-buttons {
 .watchlist-input {
   padding: 5px;
 }
-
+.prev-btn {
+  margin-left: 10px;
+}
 .watchlist-button {
   padding: 5px 10px;
   background-color: #007bff;
