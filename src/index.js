@@ -22,7 +22,7 @@ fetch("https://api.coincap.io/v2/assets")
 
         cryptoArray.forEach(coin => {
             coin.imgSource = `https://cryptoicons.org/api/icon/${coin.symbol.toLowerCase()}/200`;
-            render24HourChange(coin);
+            render24HourChange(cryptoArray);
         });
 
 
@@ -120,21 +120,28 @@ function showCurrentCoins(cryptoArray) {
     nextBtn.disabled = currentIndex + 5 >= cryptoArray.length;
 }
 
-function render24HourChange(coin) {
-    const coinChangeContainer = document.createElement('div');
-    coinChangeContainer.className = 'coin-change';
-
-    const coinNameSymbolElement = document.createElement('p');
-    coinNameSymbolElement.textContent = `${coin.name} (${coin.symbol})`;
-
-    const coinChangeElement = document.createElement('p');
-    coinChangeElement.textContent = `Change: ${coin.changepercent24Hr}%`;
-
-    coinChangeContainer.appendChild(coinNameSymbolElement);
-    coinChangeContainer.appendChild(coinChangeElement);
-
+function render24HourChange(cryptoArray) {
     const coinChangeContainerElement = document.getElementById('coin-change-container');
-    coinChangeContainerElement.appendChild(coinChangeContainer);
+    coinChangeContainerElement.innerHTML = '';
+
+    const visibleCoins = cryptoArray.slice(0, 7);
+
+    visibleCoins.forEach(coin => {
+        console.log(typeof (coin.changePercent24Hr))
+        const coinChangeContainer = document.createElement('div');
+        coinChangeContainer.className = 'coin-change';
+
+        const coinNameSymbolElement = document.createElement('p');
+        coinNameSymbolElement.textContent = `${coin.name} (${coin.symbol})`;
+
+        const coinChangeElement = document.createElement('p');
+        coinChangeElement.textContent = `Percent Change: ${coin.changePercent24Hr}%`;
+
+        coinChangeContainer.appendChild(coinNameSymbolElement);
+        coinChangeContainer.appendChild(coinChangeElement);
+
+        coinChangeContainerElement.appendChild(coinChangeContainer);
+    });
 }
 
 
