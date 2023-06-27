@@ -10,9 +10,9 @@
       <div class="header-content">
         <h1>Real-Time Crypto Prices</h1>
         <div class="form-container">
-          <form id="search-form">
-            <input type="text" id="search-input" placeholder="Enter coin symbol here">
-            <button type="submit">Add to Watchlist</button>
+          <form id="watchlist-form">
+            <input type="text" id="watchlist-input" placeholder="Enter coin symbol here">
+            <button type="submit" id="watchlist-button">Add to Watchlist</button>
           </form>
         </div>
       </div>
@@ -27,6 +27,9 @@
     <main>
       <div class="main-container">
         <div class="content-container"></div>
+        <div class="change-container">
+          <h2>24hr Change</h2>
+        </div>
         <div class="watchlist-container">
           <h2>Watchlist Coins</h2>
           <ul id="watchlist-items" class="watchlist-items"></ul>
