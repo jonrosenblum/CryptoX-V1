@@ -60,8 +60,13 @@ function createCoinMenuItem(symbol, name, price, imgSource) {
     priceElement.className = 'coin-price';
     priceElement.textContent = `$${price}`;
 
+    const imageElement = document.createElement('img');
+    imageElement.className = 'coin-image';
+    imageElement.src = imgSource
+
     listItem.appendChild(nameSymbolElement);
     listItem.appendChild(priceElement);
+    listItem.appendChild(imageElement)
 
     listItem.addEventListener('click', () => {
         renderCoinDetails(name, symbol, price, imgSource);
