@@ -20,6 +20,17 @@ body {
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column; /* Add this line */
+  justify-content: flex-start; /* Add this line */
+  align-items: center;
+  text-align: center;
+}
+
+.content-container {
+  width: 300px; /* Adjust the width as per your requirement */
+  height: 390px; /* Set the same height as the width to make it a square */
+  margin: 0 auto; /* Center the container horizontally */
 }
 
 .container {
@@ -47,13 +58,13 @@ h1 {
   gap: 10px;
 }
 
-nav.nav-menu {
+/* nav.nav-menu {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   margin-bottom: 20px;
-}
+} */
 
 ul.coin-list {
   list-style: none;
@@ -93,13 +104,6 @@ nav .nav-buttons {
   gap: 10px;
 }
 
-/* .container-image {
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 5px;
-  width: 30px;
-} */
-
 .coin-details {
   display: flex;
   flex-direction: column;
@@ -113,10 +117,16 @@ nav .nav-buttons {
   font-size: 24px;
   font-weight: bold;
   text-transform: uppercase;
+  margin-top: 0;
+}
+
+.change-container h2 {
+  font-size: 24px;
+  margin-top: 0;
 }
 .watchlist-container h2 {
   font-size: 24px;
-  color: blue;
+  margin-top: 0;
 }
 
 .menu-bar {
