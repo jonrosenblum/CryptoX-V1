@@ -66,7 +66,7 @@ function createCoinMenuItem(symbol, name, price, imgSource) {
     menuImageElement.src = imgSource
 
     menuImageElement.addEventListener('error', () => {
-        menuImageElement.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP7jZUOGvusMIOFUpAGYcEe28KZqFzWIKkB-TIkdSs&s';
+        menuImageElement.src = "https://i.ibb.co/zRLmrMN/shitcoin.png"
     });
 
     listItem.appendChild(nameSymbolElement);
@@ -100,7 +100,7 @@ function renderCoinDetails(name, symbol, price, imgSource) {
     imageElement.height = 200;
 
     imageElement.addEventListener('error', () => {
-        imageElement.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP7jZUOGvusMIOFUpAGYcEe28KZqFzWIKkB-TIkdSs&s';
+        imageElement.src = "https://i.ibb.co/zRLmrMN/shitcoin.png";
     });
 
     coinDetailsContainer.appendChild(nameElement);
