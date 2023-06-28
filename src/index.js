@@ -155,6 +155,12 @@ function render24HourChange(cryptoArray) {
         }
 
         coinChangeContainerElement.appendChild(coinChangeContainer);
+
+
+        coinChangeContainer.addEventListener("click", () => {
+            //console.assert(coin.price != null, "coin.price was null in 24hr handler")
+            renderCoinDetails(coin.name, coin.symbol, coin.priceUsd, coin.imgSource);
+        });
     });
 }
 
