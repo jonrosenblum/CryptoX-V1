@@ -65,6 +65,10 @@ function createCoinMenuItem(symbol, name, price, imgSource) {
     menuImageElement.className = 'coin-image';
     menuImageElement.src = imgSource
 
+    menuImageElement.addEventListener('error', () => {
+        menuImageElement.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP7jZUOGvusMIOFUpAGYcEe28KZqFzWIKkB-TIkdSs&s';
+    });
+
     listItem.appendChild(nameSymbolElement);
     listItem.appendChild(menuImageElement)
     listItem.appendChild(priceElement);
