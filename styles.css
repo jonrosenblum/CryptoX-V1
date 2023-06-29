@@ -56,8 +56,9 @@ h1 {
 }
 
 .menu-bar {
-  background-color: #f2f2f2;
+  background-color: white;
   padding: 10px;
+  margin: 30px;
 }
 
 .menu {
@@ -106,25 +107,53 @@ h1 {
   gap: 20px;
 }
 
+.change-container {
+  background-color: white;
+  padding: 20px;
+}
+
 .content-container {
   background-color: #fff;
-  padding: 20px;
+  padding: 105px;
   border-radius: 5px;
 }
 
 .coin-list {
-  display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
+  list-style-type: none;
+  text-align: center;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.coin-list li {
+  background: white;
+  margin: 20px;
+  margin-top: 20px;
 }
 
 .coin-details {
   text-align: center;
 }
 
+.coin-details p {
+  margin: 52px;
+  font-size: 42px;
+}
+
 .coin-details h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
+  font-size: 40px;
+  margin-bottom: 64px;
+}
+
+.change-container h2 {
+  color: black;
+  text-align: center;
+  margin: 0px;
+  padding: 24px;
 }
 
 .coin-price {
