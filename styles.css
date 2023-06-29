@@ -117,22 +117,22 @@ h1 {
   padding: 105px;
   border-radius: 5px;
 }
-
+.coin-item p {
+  margin: 12px;
+}
 .coin-list {
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
+  gap: 9px;
   list-style-type: none;
   text-align: center;
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  scroll-behavior: smooth;
+  display: inline-flex;
+  margin: 6px;
 }
 
 .coin-list li {
   background: white;
   margin: 20px;
   margin-top: 20px;
+  text-align: center;
 }
 
 .coin-details {
