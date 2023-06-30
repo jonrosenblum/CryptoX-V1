@@ -59,6 +59,7 @@ h1 {
   background-color: white;
   padding: 10px;
   margin: 30px;
+  border-radius: 16px;
 }
 
 .menu {
@@ -110,12 +111,13 @@ h1 {
 .change-container {
   background-color: white;
   padding: 20px;
+  border-radius: 16px;
 }
 
 .content-container {
   background-color: #fff;
   padding: 105px;
-  border-radius: 5px;
+  border-radius: 16px;
 }
 
 .coin-item {
@@ -135,10 +137,12 @@ h1 {
   width: 65px;
   height: 65px;
   object-fit: cover;
+  margin: 10px;
 }
 
 .coin-item p {
   margin: 12px;
+  margin-bottom: -10px;
 }
 
 .prev-btn,
@@ -213,7 +217,7 @@ h1 {
 .watchlist-container {
   background-color: #fff;
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 16px;
 }
 
 .watchlist-container h2 {
