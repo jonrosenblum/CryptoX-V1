@@ -18,11 +18,9 @@ fetch("https://api.coincap.io/v2/assets")
     .then(response => response.json())
     .then(cryptoObject => {
         const cryptoArray = cryptoObject.data;
-        console.log(cryptoArray)
 
         cryptoArray.forEach(coin => {
             coin.imgSource = `assets/images/${coin.symbol.toLowerCase()}.png`;
-            console.log(coin)
             render24HourChange(cryptoArray);
         });
 
@@ -185,7 +183,6 @@ function goToNextCoins(cryptoArray) {
 function symbolExistsInWatchList(symbol) {
     const watchlistItems = document.getElementById('watchlist-items');
     const watchlistSymbols = Array.from(watchlistItems.getElementsByTagName('li')).map(item => item.textContent.trim().substr(0, 3).toUpperCase());
-    console.log(watchlistSymbols)
     return watchlistSymbols.includes(symbol);
 }
 
