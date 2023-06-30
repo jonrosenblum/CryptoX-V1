@@ -134,8 +134,8 @@ h1 {
 }
 
 .coin-image {
-  width: 65px;
-  height: 65px;
+  width: 15px;
+  height: 15px;
   object-fit: cover;
   margin: 10px;
 }
@@ -143,6 +143,7 @@ h1 {
 .coin-item p {
   margin: 12px;
   margin-bottom: -10px;
+  font-size: 10px;
 }
 
 .prev-btn,
@@ -167,9 +168,10 @@ h1 {
 
 .coin-list li {
   background: white;
-  margin: 20px;
+  margin: 15px;
   margin-top: 20px;
-  text-align: center;
+  width: 60px;
+  justify-content: center;
 }
 
 .coin-details {
