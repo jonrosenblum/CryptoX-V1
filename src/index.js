@@ -69,7 +69,7 @@ function createCoinMenuItem(symbol, name, price, imgSource) {
 
     listItem.appendChild(nameSymbolElement);
     listItem.appendChild(menuImageElement)
-    listItem.appendChild(priceElement);
+    // listItem.appendChild(priceElement);
 
     listItem.addEventListener('click', () => {
         renderCoinDetails(name, symbol, price, imgSource);
@@ -113,7 +113,7 @@ function renderCoinDetails(name, symbol, price, imgSource) {
 function showCurrentCoins(cryptoArray) {
     coinList.innerHTML = '';
 
-    const visibleCoins = cryptoArray.slice(currentIndex, currentIndex + 5);
+    const visibleCoins = cryptoArray.slice(currentIndex, currentIndex + 10);
 
     for (let i = 0; i < visibleCoins.length; i++) {
         const { symbol, name, priceUsd, imgSource } = visibleCoins[i];
@@ -122,7 +122,7 @@ function showCurrentCoins(cryptoArray) {
     }
 
     prevBtn.disabled = currentIndex === 0;
-    nextBtn.disabled = currentIndex + 5 >= cryptoArray.length;
+    nextBtn.disabled = currentIndex + 10 >= cryptoArray.length;
 }
 
 function render24HourChange(cryptoArray) {
@@ -167,15 +167,15 @@ function render24HourChange(cryptoArray) {
 // Function to go to the previous set of coins
 function goToPreviousCoins(cryptoArray) {
     if (currentIndex > 0) {
-        currentIndex -= 5;
+        currentIndex -= 10;
         showCurrentCoins(cryptoArray);
     }
 }
 
 // Function to go to the next set of coins
 function goToNextCoins(cryptoArray) {
-    if (currentIndex + 5 < cryptoArray.length) {
-        currentIndex += 5;
+    if (currentIndex + 10 < cryptoArray.length) {
+        currentIndex += 10;
         showCurrentCoins(cryptoArray);
     }
 }
