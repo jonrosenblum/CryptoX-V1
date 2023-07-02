@@ -9,67 +9,79 @@
       <header>
         <div class="header-content">
           <h1>Real-Time Crypto Prices</h1>
-          <div class="form-container">
-            <form id="watchlist-form">
-              <input
-                type="text"
-                id="watchlist-input"
-                placeholder="Enter coin symbol here"
-              />
-              <button type="submit" id="watchlist-button">
-                Add to Watchlist
-              </button>
-            </form>
-          </div>
-        </div>
+              <div class="header-content">
+                <div class="search-bar">
+                  <form id="search-bar-form">
+                    <input type="text" id="search-bar-input" placeholder="Search" />
+                    <button type="submit" id="search-bar-button">Enter</button>
+                  </form>
+                </div>
+                <div class="user-option">
+                  <button type="submit" id="sign-up-button">Sign Up</button>
+                  <button type="submit" id="log-in-button">Log In</button>
+                </div>
+              </div>
+              </header>
         <div class="menu-bar">
           <ul class="menu">
             <li class="dropdown">
               <a href="#">Markets</a>
               <div class="dropdown-content">
-                <a href="#">Submenu 1</a>
-                <a href="#">Submenu 2</a>
-                <a href="#">Submenu 3</a>
+                <a href="#">On-Chain Data</a>
+                <a href="#">Token Governance</a>
+                <a href="#">Bitcoin</a>
+                <a href="#">Ether</a>
+                <a href="#">First Mover</a>
               </div>
             </li>
             <li class="dropdown">
               <a href="#">Finance</a>
               <div class="dropdown-content">
-                <a href="#">Submenu 1</a>
-                <a href="#">Submenu 2</a>
-                <a href="#">Submenu 3</a>
+                <a href="#">FTX</a>
+                <a href="#">SBF</a>
+                <a href="#">NFTs</a>
+                <a href="#">Coinbase</a>
+                <a href="#">Business</a>
               </div>
             </li>
             <li class="dropdown">
               <a href="#">Policy</a>
               <div class="dropdown-content">
-                <a href="#">Submenu 1</a>
-                <a href="#">Submenu 2</a>
-                <a href="#">Submenu 3</a>
+                <a href="#">Regulations</a>
+                <a href="#">Bankruptcy</a>
+                <a href="#">SEC</a>
+                <a href="#">FTX</a>
+                <a href="#">CFTC</a>
               </div>
             </li>
             <li class="dropdown">
               <a href="#">Technology</a>
               <div class="dropdown-content">
-                <a href="#">Submenu 1</a>
-                <a href="#">Submenu 2</a>
-                <a href="#">Submenu 3</a>
+                <a href="#">On-Chain Data</a>
+                <a href="#">Token Governance</a>
+                <a href="#">DeFi</a>
+                <a href="#">Blockchains</a>
+                <a href="#">Hacks</a>
               </div>
             </li>
             <li class="dropdown">
               <a href="#">Web3</a>
               <div class="dropdown-content">
-                <a href="#">Submenu 1</a>
-                <a href="#">Submenu 2</a>
-                <a href="#">Submenu 3</a>
+                <a href="#">Yuga Labs</a>
+                <a href="#">NFTs</a>
+                <a href="#">Metaverse</a>
+                <a href="#">Dao Gaming</a>
               </div>
             </li>
             <li class="dropdown">
               <a href="#">Learn</a>
               <div class="dropdown-content">
-                <a href="#">Submenu 1</a>
-                <a href="#">Submenu 2</a>
-                <a href="#">Submenu 3</a>
+                <a href="#">NFTs</a>
+                <a href="#">Bitcoin</a>
+                <a href="#">Ethereum</a>
+                <a href="#">Cryptocurrency</a>
+                <a href="#">Investing</a>
+
               </div>
             </li>
           </ul>
@@ -89,7 +101,19 @@
             <h2>24 Hour Change</h2>
             <div id="coin-change-container" class="coin-change-container"></div>
           </div>
-
+          <div class="form-container">
+            <form id="watchlist-form">
+              <input
+                type="text"
+                id="watchlist-input"
+                placeholder="Enter coin symbol here"
+              />
+              <button type="submit" id="watchlist-button">
+                Add to Watchlist
+              </button>
+            </form>
+          </div>
+        </div>
           <div class="watchlist-container">
             <h2>Watchlist Coins</h2>
             <ul id="watchlist-items" class="watchlist-items"></ul>
