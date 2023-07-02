@@ -32,6 +32,8 @@ h1 {
 
 .form-container {
   display: flex;
+  margin: 10px;
+  padding: 10px;
 }
 
 #watchlist-input {
@@ -168,9 +170,9 @@ h1 {
 
 .coin-list li {
   background: white;
-  margin: 15px;
+  margin: 4px;
   margin-top: 20px;
-  width: 60px;
+  width: 94px;
   justify-content: center;
 }
 
